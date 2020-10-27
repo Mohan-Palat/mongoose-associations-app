@@ -18,10 +18,19 @@ router.get('/:userId', (req, res) => {
   });
 
 // CREATE A NEW USER
+// http://localhost:3000/users/
 
 router.post('/', (req, res) => {
   User.create(req.body, (error, user) => {
     res.redirect(`/users/${user.id}`);
+  });
+});
+
+// ALL USERS INDEX
+
+router.get('/', (req, res) => {
+  User.find({}, (error, users) => {
+    res.render('users/index.ejs', { users });
   });
 });
 
@@ -41,7 +50,7 @@ router.post('/:userId/tweets', (req, res) => {
 });
 
 // EDIT TWEETS
-
+// http://localhost:3000/users/5f971ef8f2e94ec142dbff89/tweets/5f971f0ff2e94ec142dbff8a/edit
 router.get('/:userId/tweets/:tweetId/edit', (req, res) => {
   // set the value of the user and tweet ids
   const userId = req.params.userId;

@@ -1,0 +1,6 @@
+<h1>All Albums</h1>
+<ul>
+  <% albums.forEach(album => { %>
+  <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
+  <% }) %>
+</ul>
